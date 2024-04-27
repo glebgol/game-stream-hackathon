@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, redirect, request, url_for
 
 app = Flask(__name__)
@@ -18,9 +19,11 @@ def generate():
         save_file(request, f'file{i}')
 
     save_file(request, DUMMY_FILE_NAME)
-    generate_result_image(number_of_masks)
 
-    return redirect(url_for('result'))
+    prompts = get_prompts(request)
+    generate_result_image(prompts)
+
+    return redirect(url_for('result_image'))
 
 
 @app.route('/result', methods=['GET'])
@@ -28,14 +31,18 @@ def result_image():
     return render_template('result.html')
 
 
-def generate_result_image(number_of_masks):
+def generate_result_image(prompts):
     # TODO generating image
     return
 
 
 def save_file(req, request_filename):
     f = req.files[request_filename]
-    f.save(f.filename)
+    f.save(request_filename + os.path.splitext(f.filename)[1])
+
+
+def get_prompts(req):
+    return [req.form.get(f'prompt{i}') for i in range(get_number_of_masks_from_form(req))]
 
 
 def get_number_of_masks(req):
