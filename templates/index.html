@@ -3,30 +3,29 @@
     <title>upload the file : GFG</title>
 </head>
 <body>
-<form action = "/success" method = "post" enctype="multipart/form-data">
+<form action = "/" method="get">
+    <h3>Изменить количество масок:</h3>
+    <input type="text" name="number_of_masks"/>
+</form>
+<form id="generate" action = "/generate" method = "post" enctype="multipart/form-data">
     {% for i in range(number_of_masks) %}
         <h2>
             <img id="blah{{ i }}" alt="your image" width="100" height="100">
             <input type="file"  name="file{{ i }}"
                    onchange="document.getElementById('blah{{ i }}').src = window.URL.createObjectURL(this.files[0])">
             </img>
-
             <input type="text" name="prompt{{ i }}"/>
         </h2>
         <br>
     {% endfor %}
+    <h2>Болванка:</h2>
+    <img id="blah" alt="your image" width="100" height="100">
+    <input type="file" name="dummy_file"
+           onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+    <input type="hidden" name="number_of_masks" value="{{ number_of_masks }}">
 </form>
-<form action = "/" method="get">
-    <h3>Изменить количество масок:</h3>
-    <input type="text" name="number_of_masks"/>
-</form>
+<button type="submit" form="generate">Генерировать</button>
 </body>
 <script>
-    imgInp.onchange = evt => {
-        const [file] = imgInp.files
-        if (file) {
-            blah.src = URL.createObjectURL(file)
-        }
-    }
 </script>
 </html>
