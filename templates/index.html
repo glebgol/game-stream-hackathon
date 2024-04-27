@@ -1,28 +1,55 @@
 <html lang="ru">
 <head>
     <title>upload the file : GFG</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-<form id="add-mask" action = "/add-mask" method="post">
-</form>
-<button type="submit" form="add-mask">Добавить маску</button>
-<form id="generate" action = "/generate" method = "post" enctype="multipart/form-data">
-    {% for i in range(number_of_masks) %}
-        <h2>
-            <img id="blah{{ i }}" alt="your image" width="100" height="100">
-            <input type="file"  name="file{{ i }}"
-                   onchange="document.getElementById('blah{{ i }}').src = window.URL.createObjectURL(this.files[0])">
-            <input type="text" name="prompt{{ i }}"/>
-        </h2>
-        <br>
-    {% endfor %}
-    <h2>Болванка:</h2>
-    <img id="blah" alt="your image" width="100" height="100">
-    <input type="file" name="dummy_file"
-           onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
-    <input type="hidden" name="number_of_masks" value="{{ number_of_masks }}">
-</form>
-<button type="submit" form="generate">Генерировать</button>
+    <main>
+        <form id="add-mask" action = "/add-mask" method="post"></form>
+        <div name="button-container">
+            <button type="submit" form="add-mask" name=add-button">Добавить маску</button>
+        </div>
+        <form id="generate" action = "/generate" method = "post" enctype="multipart/form-data">
+            <h2>Маски:</h2>
+            {% for i in range(number_of_masks) %}
+            <div name="mask">
+                <img id="blah{{ i }}" alt="your image" src="https://aelektro.ru/images/nofoto.png" width="100" height="100">
+                <div name="inputs">
+                    <div class="input__wrapper">
+                        <input name="file" type="file" id="input__file" class="input input__file" multiple
+                               onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                        <label for="input__file" class="input__file-button">
+                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="https://cdn.icon-icons.com/icons2/2543/PNG/512/download_icon_152226.png" alt="Выбрать файл" width="25"></span>
+                            <span class="input__file-button-text">Выберите файл</span>
+                        </label>
+                    </div>
+                    <input type="text" name="prompt{{ i }}"  class="text-field__input" placeholder="prompt"/>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </form>
+        <div name="default-image">
+            <h2>Болванка:</h2>
+            <div name="mask">
+                <img id="blah" alt="your image" width="100" height="100" src="https://aelektro.ru/images/nofoto.png">
+                <div name="inputs">
+                    <div class="input__wrapper">
+                        <input name="file" type="file" id="input__file" class="input input__file" multiple
+                               onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                        <label for="input__file" class="input__file-button">
+                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="https://cdn.icon-icons.com/icons2/2543/PNG/512/download_icon_152226.png" alt="Выбрать файл" width="25"></span>
+                            <span class="input__file-button-text">Выберите файл</span>
+                        </label>
+                    </div>
+                    <input type="hidden" name="number_of_masks" value="{{ number_of_masks }}">
+                </div>
+            </div>
+        </div>
+        <div name="button-container">
+            <button type="submit" form="generate">Генерировать</button>
+        </div>
+    </main>
 </body>
 <script>
 </script>
