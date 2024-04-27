@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.container {
+    width: 70%;
+}
+
 main {
     display: flex;
     min-height: 100vh;
@@ -20,13 +24,18 @@ footer {
 }
 
 header {
-    font-weight: 700;
+    font-weight: 300;
     font-size: 30px;
     padding-left: 100px;
     padding-top: 50px;
     height: 127px;
     width: 100%;
+    color: white;
     background: linear-gradient(90deg, #343333 38.05%, #484848 69.22%, #282828 98.98%);
+}
+
+span {
+    font-weight: 700;
 }
 
 body {
@@ -203,5 +212,31 @@ button:disabled {
     justify-content: flex-start;
     border-radius: 3px;
     cursor: pointer;
+}
+
+.contacts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.circle {
+    display: flex;
+    justify-content: space-between;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.git {
+    background-color: #333;
+}
+
+.telegram {
+    background-color: #0088cc;
+}
+
+.vk {
+    background-color: #45668e;
 }
 
