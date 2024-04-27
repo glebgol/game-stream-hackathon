@@ -3,17 +3,15 @@
     <title>upload the file : GFG</title>
 </head>
 <body>
-<form action = "/" method="get">
-    <h3>Изменить количество масок:</h3>
-    <input type="text" name="number_of_masks"/>
+<form id="add-mask" action = "/add-mask" method="post">
 </form>
+<button type="submit" form="add-mask">Добавить маску</button>
 <form id="generate" action = "/generate" method = "post" enctype="multipart/form-data">
     {% for i in range(number_of_masks) %}
         <h2>
             <img id="blah{{ i }}" alt="your image" width="100" height="100">
             <input type="file"  name="file{{ i }}"
                    onchange="document.getElementById('blah{{ i }}').src = window.URL.createObjectURL(this.files[0])">
-            </img>
             <input type="text" name="prompt{{ i }}"/>
         </h2>
         <br>

@@ -1,14 +1,23 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, Response
 
 app = Flask(__name__)
-DEFAULT_NUMBER_OF_MASKS = 3
 DUMMY_FILE_NAME = 'dummy_file'
+
+
+class Config:
+    default_number_of_masks = 1
 
 
 @app.route('/')
 def index():
     return render_template("index.html", number_of_masks=get_number_of_masks(request))
+
+
+@app.route('/add-mask', methods=['POST'])
+def add_mask():
+    Config.default_number_of_masks += 1
+    return redirect(url_for('index'))
 
 
 @app.route('/generate', methods=['GET', 'POST'])
@@ -47,7 +56,7 @@ def get_prompts(req):
 
 def get_number_of_masks(req):
     number_of_masks = req.args.get('number_of_masks', type=int)
-    return DEFAULT_NUMBER_OF_MASKS if number_of_masks is None else number_of_masks
+    return Config.default_number_of_masks if number_of_masks is None else number_of_masks
 
 
 def get_number_of_masks_from_form(req):
