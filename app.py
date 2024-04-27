@@ -6,7 +6,7 @@ DUMMY_FILE_NAME = 'dummy_file'
 
 
 class Config:
-    default_number_of_masks = 1
+    NUMBER_OF_MASKS = 1
 
 
 @app.route('/')
@@ -16,7 +16,7 @@ def index():
 
 @app.route('/add-mask', methods=['POST'])
 def add_mask():
-    Config.default_number_of_masks += 1
+    Config.NUMBER_OF_MASKS += 1
     return redirect(url_for('index'))
 
 
@@ -56,7 +56,7 @@ def get_prompts(req):
 
 def get_number_of_masks(req):
     number_of_masks = req.args.get('number_of_masks', type=int)
-    return Config.default_number_of_masks if number_of_masks is None else number_of_masks
+    return Config.NUMBER_OF_MASKS if number_of_masks is None else number_of_masks
 
 
 def get_number_of_masks_from_form(req):
