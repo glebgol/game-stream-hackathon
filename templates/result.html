@@ -2,10 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-<h1>Детализированная:</h1>
-<img src="{{url_for('static', filename='resultresultresult.png')}}" width="500" height="500" alt="Result"/>
+<header>
+    <span>LESTA</span> GAMES
+</header>
+<main>
+    <h1>Детализированная:</h1>
+    <img src="{{url_for('static', filename='resultresultresult.png')}}" width="500" height="500" alt="Result"/>
+</main>
+<footer>
+    <div class="contacts">
+        <a href="ссылка на гит" class="circle git"><img src="https://cdn.icon-icons.com/icons2/509/PNG/512/Github_icon-icons.com_49946.png"></a>
+        <a href="ссылка на телеграм" class="circle telegram"><img src="https://pngicon.ru/file/uploads/telegram.png"></a>
+        <a href="ссылка на вконтакте" class="circle vk"><img src="https://w7.pngwing.com/pngs/762/504/png-transparent-vk-social-media-icon-icon-thumbnail.png"></a>
+    </div>
+</footer>
 </body>
 </html>
