@@ -40,6 +40,12 @@ div[name="mask"] {
     align-items: center;
 }
 
+.add-button {
+    position: absolute;
+    top: 170px;
+    left: 80px;
+}
+
 div[name="inputs"] {
     margin-left: 5px;
     display: flex;
