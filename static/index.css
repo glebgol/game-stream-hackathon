@@ -1,11 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
 main {
     display: flex;
-    justify-content: space-between;
+    min-height: 100vh;
+    justify-content: space-around;
     align-items: center;
+    background: #ffffff;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    height: 127px;
+    width: 100%;
+    background: #F9F9F9;
+    padding-left: 100px;
+}
+
+header {
+    font-weight: 700;
+    font-size: 30px;
+    padding-left: 100px;
+    padding-top: 50px;
+    height: 127px;
+    width: 100%;
+    background: linear-gradient(90deg, #343333 38.05%, #484848 69.22%, #282828 98.98%);
 }
 
 body {
     font-family: "Lexend Deca", sans-serif;
+    margin: 0;
 }
 
 div[name="mask"] {
