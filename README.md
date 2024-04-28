@@ -1,7 +1,7 @@
 ## Space HACKATHON with Game Stream (Lesta Games)
 26.04.2024-28.04.2024
 
-[Краткое описание проблемы и решения](Brochure.pdf)
+[Краткое описание проблемы и решения](CompressedBrochure.pdf)
 
 ### Команда:
 - Захар Статкевич (лидер, data scientist)
