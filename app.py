@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, Response
+from flask import Flask, render_template, redirect, request, url_for
 
 app = Flask(__name__)
 DUMMY_FILE_NAME = 'dummy_file'
@@ -45,9 +45,14 @@ def generate_result_image(prompts):
     return
 
 
+def is_file_attached(file):
+    return file.filename != ''
+
+
 def save_file(req, request_filename):
     f = req.files[request_filename]
-    f.save(request_filename + os.path.splitext(f.filename)[1])
+    if is_file_attached(f):
+        f.save(request_filename + os.path.splitext(f.filename)[1])
 
 
 def get_prompts(req):
@@ -56,11 +61,15 @@ def get_prompts(req):
 
 def get_number_of_masks(req):
     number_of_masks = req.args.get('number_of_masks', type=int)
-    return Config.NUMBER_OF_MASKS if number_of_masks is None else number_of_masks
+    if number_of_masks is not None:
+        Config.NUMBER_OF_MASKS = number_of_masks
+        return number_of_masks
+    return Config.NUMBER_OF_MASKS
 
 
 def get_number_of_masks_from_form(req):
-    return req.form.get('number_of_masks', type=int)
+    number_of_masks = req.args.get('number_of_masks', type=int)
+    return Config.NUMBER_OF_MASKS if number_of_masks is None else number_of_masks
 
 
 if __name__ == '__main__':

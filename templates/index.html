@@ -1,6 +1,6 @@
 <html lang="ru">
 <head>
-    <title>upload the file : GFG</title>
+    <title>Game Stream Hackathon</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
@@ -19,7 +19,7 @@
                 <img id="{{ i }}" alt="your image" src="https://aelektro.ru/images/nofoto.png" width="100" height="100">
                 <div name="inputs">
                     <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file{{i}}" class="input input__file" multiple
+                        <input name="file{{ i }}" type="file" id="input__file{{i}}" class="input input__file" multiple
                                onchange="document.getElementById('{{ i }}').src = window.URL.createObjectURL(this.files[0])">
                         <label for="input__file{{i}}" class="input__file-button">
                             <span class="input__file-icon-wrapper"><img class="input__file-icon" src="https://cdn.icon-icons.com/icons2/2543/PNG/512/download_icon_152226.png" alt="Выбрать файл" width="25"></span>
@@ -31,24 +31,24 @@
             </div>
             <br>
             {% endfor %}
-        </form>
-        <div name="default-image">
-            <h2>Болванка:</h2>
-            <div name="mask">
-                <img id="blah" alt="your image" width="100" height="100" src="https://aelektro.ru/images/nofoto.png">
-                <div name="inputs">
-                    <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file" class="input input__file" multiple
-                               onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
-                        <label for="input__file" class="input__file-button">
-                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="https://cdn.icon-icons.com/icons2/2543/PNG/512/download_icon_152226.png" alt="Выбрать файл" width="25"></span>
-                            <span class="input__file-button-text" onclick="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">Выберите файл</span>
-                        </label>
+            <div name="default-image">
+                <h2>Draft Map:</h2>
+                <div name="mask">
+                    <img id="blah" alt="your image" width="100" height="100" src="https://aelektro.ru/images/nofoto.png">
+                    <div name="inputs">
+                        <div class="input__wrapper">
+                            <input name="dummy_file" type="file" id="input__file" class="input input__file" multiple
+                                   onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                            <label for="input__file" class="input__file-button">
+                                <span class="input__file-icon-wrapper"><img class="input__file-icon" src="https://cdn.icon-icons.com/icons2/2543/PNG/512/download_icon_152226.png" alt="Выбрать файл" width="25"></span>
+                                <span class="input__file-button-text" onclick="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">Выберите файл</span>
+                            </label>
+                        </div>
+                        <input type="hidden" name="number_of_masks" value="{{ number_of_masks }}">
                     </div>
-                    <input type="hidden" name="number_of_masks" value="{{ number_of_masks }}">
                 </div>
             </div>
-        </div>
+        </form>
         <div name="button-container">
             <button type="submit" form="generate">Генерировать</button>
         </div>
